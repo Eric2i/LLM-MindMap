@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLM.">
+  <meta name="keywords" content="LLM, Reasoning, Chain-of-Thought, CoT, Graph Analysis, Interpretability">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapping the Minds of LLMs: A Graph-Based Analysis</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">🧠 Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLM</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://eric2i.com/">Zhen Xiong</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://vanoracai.github.io/">Yujun Cai</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/Lizhecheng02">Zhecheng Li</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://wangywust.github.io/">Yiwei Wang</a><sup>4</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Southern California,</span>
+            <span class="author-block"><sup>2</sup>The University of Queensland,</span>
+            <div></div>
+            <span class="author-block"><sup>3</sup>University of California, San Diego,</span>
+            <span class="author-block"><sup>4</sup>University of California, Merced</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+             <span class="author-block"><sup>*</sup>Corresponding Author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2505.13890.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2505.13890"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/Eric2i/LLM-MindMap"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/teaser.png" alt="A conceptual overview of our framework for modeling the long reasoning CoT with a graph structure." style="width: 40%; display: block; margin: 0 auto;"/>
+      <h2 class="subtitle has-text-centered">
+        Our framework converts long, verbose Chain-of-Thought (CoT) outputs into structured, analyzable reasoning graphs, improving readability, interpretability, and quantifiability.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in test-time scaling have enabled Large Language Models (LLMs) to display sophisticated reasoning abilities via extended Chain-of-Thought (CoT) generation. Despite their impressive reasoning abilities, Large Reasoning Models (LRMs) frequently display unstable behaviors, e.g., hallucinating unsupported premises, overthinking simple tasks, and displaying higher sensitivity to prompt variations. This raises a deeper research question: How can we represent the reasoning process of LRMs to map their minds? 
+          </p>
+          <p>
+            To address this, we propose a unified graph-based analytical framework for fine-grained modeling and quantitative analysis of LRM reasoning dynamics. Our method first clusters long, verbose CoT outputs into semantically coherent reasoning steps, then constructs directed reasoning graphs to capture contextual and logical dependencies among these steps.
+          </p>
+          <p>
+             Through a comprehensive analysis of derived reasoning graphs, we also reveal that key structural properties, such as exploration density, branching, and convergence ratios, strongly correlate with models' performance. The proposed framework enables quantitative evaluation of internal reasoning structure and quality beyond conventional metrics and also provides practical insights for prompt engineering and cognitive analysis of LLMs. Code and resources will be released to facilitate future research in this direction.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our pipeline provides a systematic method for transforming raw, unstructured reasoning tokens from LLMs into interpretable graph structures. We begin with the raw token output and first segment it into an ordered list of reasoning units based on natural delimiters. Then, a logical clustering step combines these fine-grained units into cohesive reasoning steps, which become the nodes of our graph. Finally, we detect the semantic relationships between these steps to establish directed edges, revealing the high-level reasoning structure adopted by the LLM.
+          </p>
+        </div>
+        <img src="static/images/framework.png" alt="Pipeline for building the graph structure from reasoning LLM output." style="display: block; margin: 0 auto;"/>
+      </div>
+    </div>
+    <br>
+    <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Analysis and Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              Our analysis reveals that higher task accuracy is consistently associated with a richer reasoning graph structure, characterized by increased exploration density, higher branching, and greater convergence. In contrast, few-shot prompting, particularly with verbose examples, tends to reduce branching and convergence, leading to more linear and less effective reasoning paths. Zero-shot prompting encourages more complex and adaptive graph structures, suggesting that models engage in more active exploration and synthesis when not constrained by demonstrations. These structural signatures of effective reasoning persist across different model scales, highlighting the explanatory power of our graph-based framework.
+            </p>
+          </div>
+          <img src="static/images/results.png" alt="Analysis of reasoning graph metrics for correct and incorrect answers across different numbers of few-shot examples." style="width: 65%; display: block; margin: 0 auto;"/>
+        </div>
+      </div>
+      </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{xiong2025mapping,
+  title={Mapping the Minds of LLMs: A Graph-Based Analysis of Reasoning LLM},
+  author={Xiong, Zhen and Cai, Yujun and Li, Zhecheng and Wang, Yiwei},
+  journal={arXiv preprint arXiv:2505.13890},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2505.13890.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Eric2i" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
